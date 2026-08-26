@@ -25,14 +25,19 @@ board = [
 def player_input(board, player):
     #get player moves
     while True:
-       row = int(input(f"Player {player}, which row would you like go in? ")) -1
-       col = int(input(f"Player {player}, which column would you like to go in? "))-1
+       try:
+           row = int(input(f"Player {player}, which row would you like go in? ")) -1
+           col = int(input(f"Player {player}, which column would you like to go in? "))-1
+       except ValueError:
+           
+           print("Please enter a valid number between 1 and 3.")
+           continue
 
        if 0 <= row <= 2 and 0 <= col <= 2 and board[row][col] == " ":
            board[row][col] = player
            break
        else:
-          print("That position is already taken dummy!")
+          print("You cant take that position dummy!")
 
 
 def check_winner(board, player):
